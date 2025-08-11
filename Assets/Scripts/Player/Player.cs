@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Unity.Netcode;
 
@@ -5,6 +6,8 @@ public class Player : NetworkBehaviour
 {
     public float moveSpeed = 5f;
 
+    [SerializeField] private GameObject nameTag;
+    
     private void Update()
     {
         // Only process input for the local player

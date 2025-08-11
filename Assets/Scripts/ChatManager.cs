@@ -4,6 +4,11 @@ using Unity.Netcode;
 
 public class ChatManager : NetworkBehaviour
 {
+    public void SendChatMessage(string message)
+    {
+        SendMessageServerRpc(message, NetworkManager.LocalClientId);
+    }
+    
     [Rpc(SendTo.Server)]
     public void SendMessageServerRpc(string message,
         ulong senderId)
@@ -19,10 +24,5 @@ public class ChatManager : NetworkBehaviour
         // All clients display the message
         string playerName = GetPlayerName(senderId);
         DisplayMessage($"{playerName}: {message}");
-    }
-    
-    public void SendChatMessage(string message)
-    {
-        SendMessageServerRpc(message, NetworkManager.LocalClientId);
     }
 }
